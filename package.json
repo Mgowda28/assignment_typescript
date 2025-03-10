@@ -1,0 +1,14 @@
+{
+  "name": "assignment_typescript",
+  "version": "0.0.0",
+  "description": "Remider functionality",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node src/index.ts"
+  },
+  "author": "mvg",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^5.8.2"
+  }
+}

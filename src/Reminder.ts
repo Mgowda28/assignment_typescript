@@ -27,3 +27,5 @@ export class Reminder {
         };
     }
 }
+
+export {ReminderData};

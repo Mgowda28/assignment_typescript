@@ -20,7 +20,9 @@ function ShowMenu() {
     console.log("9. Get All Reminders Due Today");
     console.log("10. Filter Reminders By Date");
     console.log("11. Exit");
-    rl.question("Enter your choice [1 - 11]: ",handleInput);
+    rl.question("Enter an option [1-11]: ", (option) => {
+        handleInput(option);
+    });
 }
 
 function CreateReminder() {
@@ -39,7 +41,6 @@ function CreateReminder() {
 
 function handleInput(option: string) {
     switch (option) {
-
         case "1":
             CreateReminder();  
             break;
@@ -100,13 +101,7 @@ function handleInput(option: string) {
         default:        
             ShowMenu();
             break;
-
-
     }
-
-
-   
-
 }
 
 ShowMenu();

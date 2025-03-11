@@ -40,4 +40,10 @@ export class ReminderDatabase {
         }
         return false;
     }
+
+    filterRemindersByDate(date: string): ReminderData[] {
+        return Array.from(this.reminders.values())
+            .filter(reminder => reminder.dueDate === date)
+            .map(reminder => reminder.toObject());
+    }
 }

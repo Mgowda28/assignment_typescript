@@ -18,6 +18,36 @@ export class ReminderDatabase {
         return this.reminders.has(id);
     }
 
+    markReminderAsCompleted(id: string): boolean {
+        if (this.reminders.has(id)) { 
+            this.reminders.get(id)!.completed=true;
+            return true;
+        }
+        return false;
+    }
+    unmakReminderAsCompleted(id: string): boolean {
+        if (this.reminders.has(id)) {
+            this.reminders.get(id)!.completed=false;
+            return true;
+        }
+        return false;
+    }
+    getCompletedReminders(): ReminderData[] {
+        return Array.from(this.reminders.values())
+        .filter(reminder => reminder.completed === true)    
+        .map(reminder => reminder.toObject());
+    }
+    getUncompletedReminders(): ReminderData[] {
+        return Array.from(this.reminders.values())
+        .filter(reminder => reminder.completed === false)
+        .map(reminder => reminder.toObject());
+    }
+    getRemindersDueToday(): ReminderData[] {
+        const today = new Date().toISOString().split("T")[0];   
+        return Array.from(this.reminders.values())
+        .filter(reminder => reminder.dueDate === today)
+        .map(reminder => reminder.toObject());
+    }
     getAllReminders(): ReminderData[] {
         return Array.from(this.reminders.values()).map(reminder => reminder.toObject());
     }
@@ -41,7 +71,7 @@ export class ReminderDatabase {
         return false;
     }
 
-    filterRemindersByDate(date: string): ReminderData[] {
+    filterRemindersByDate(date: string) {
         return Array.from(this.reminders.values())
             .filter(reminder => reminder.dueDate === date)
             .map(reminder => reminder.toObject());

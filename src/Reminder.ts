@@ -3,6 +3,7 @@ type ReminderData = {
     title: string;
     description: string;
     dueDate: string;
+    completed: boolean;
 };
 
 export class Reminder {
@@ -10,12 +11,14 @@ export class Reminder {
     title: string;
     description: string;
     dueDate: string;
+    completed:boolean;
 
-    constructor(id: string, title: string, description: string, dueDate: string) {
+    constructor(id: string, title: string, description: string, dueDate: string ) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
+        this.completed=false;
     }
 
     toObject(): ReminderData {
@@ -24,6 +27,7 @@ export class Reminder {
             title: this.title,
             description: this.description,
             dueDate: this.dueDate,
+            completed:this.completed
         };
     }
 }

@@ -42,12 +42,14 @@ export class ReminderDatabase {
         .filter(reminder => reminder.completed === false)
         .map(reminder => reminder.toObject());
     }
-    getRemindersDueToday(): ReminderData[] {
-        const today = new Date().toISOString().split("T")[0];   
+    getAllRemindersDueByToday(): ReminderData[] {
+        const today = new Date().toISOString().split('T')[0];  
+    
         return Array.from(this.reminders.values())
-        .filter(reminder => reminder.dueDate === today)
-        .map(reminder => reminder.toObject());
+            .filter(reminder => reminder.dueDate.split('T')[0] === today) 
+            .map(reminder => reminder.toObject());
     }
+    
     getAllReminders(): ReminderData[] {
         return Array.from(this.reminders.values()).map(reminder => reminder.toObject());
     }
